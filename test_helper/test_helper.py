@@ -2,53 +2,53 @@ from __future__ import print_function
 import hashlib
 
 
-class testfailure(Exception):
+class TestFailure(Exception):
     pass
 
 
-class privatetestfailure(Exception):
+class PrivateTestFailure(Exception):
     pass
 
 
-class test(object):
+class Test(object):
     passed = 0
-    numtests = 0
-    failfast = False
+    numTests = 0
+    failFast = False
     private = False
 
     @classmethod
-    def setfailfast(cls):
-        cls.failfast = True
+    def setFailFast(cls):
+        cls.failFast = True
 
     @classmethod
-    def setprivatemode(cls):
+    def setPrivateMode(cls):
         cls.private = True
 
     @classmethod
-    def asserttrue(cls, result, msg=""):
-        cls.numtests += 1
+    def assertTrue(cls, result, msg=""):
+        cls.numTests += 1
         if result is True:
             cls.passed += 1
             print("1 test passed.")
         else:
             print("1 test failed. {}".format(msg))
-            if cls.failfast:
+            if cls.failFast:
                 if cls.private:
-                    raise privatetestfailure(msg)
+                    raise PrivateTestFailure(msg)
                 else:
-                    raise testfailure(msg)
+                    raise TestFailure(msg)
 
     @classmethod
-    def assertequals(cls, var, val, msg=""):
-        cls.asserttrue(var == val, msg)
+    def assertEquals(cls, var, val, msg=""):
+        cls.assertTrue(var == val, msg)
 
     @classmethod
-    def assertequalshashed(cls, var, hashed_val, msg=""):
-        cls.assertequals(cls._hash(var), hashed_val, msg)
+    def assertEqualsHashed(cls, var, hashedVal, msg=""):
+        cls.assertEquals(cls._hash(var), hashedVal, msg)
 
     @classmethod
-    def printstats(cls):
-        print("{0} / {1} test(s) passed.".format(cls.passed, cls.numtests))
+    def printStats(cls):
+        print("{0} / {1} test(s) passed.".format(cls.passed, cls.numTests))
 
     @classmethod
     def _hash(cls, x):
