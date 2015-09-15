@@ -1,1 +1,1 @@
-from test_helper import Test
+from .test_helper import Test
