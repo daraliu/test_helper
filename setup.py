@@ -7,7 +7,7 @@ setup(
     author='',
     author_email='',
     url='https://github.com/daraliu/test_helper',
-    download_url='https://github.com/daraliu/test_helper/tarball/0.3',
+    # download_url='https://github.com/daraliu/test_helper/tarball/0.3',
     keywords=['testing'],
     classifiers=[],
 )
